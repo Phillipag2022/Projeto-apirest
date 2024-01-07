@@ -46,9 +46,10 @@ public class ProdutoResource {
 		return produtorepository.save(produto);
 	}
 	
-	@DeleteMapping("/produto")
+	@DeleteMapping("/produto/{id}")
 	@ApiOperation(value = "Deleta um produto")
-	public void deletaProduto(@RequestBody Produto produto) {
+	public void deletaProduto(@PathVariable(value="id") long id) {
+		Produto produto = produtorepository.findById(id);
 		produtorepository.delete(produto);
 	}
 	
